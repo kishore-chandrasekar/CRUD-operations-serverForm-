@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<style>
+    #main{
+        height: 500px;
+        width: 1200px;
+        background-color: #6ba4a4;
+        display: flex;
+      
+    }
+    #left{
+        height: 500px;
+        width: 250px;
+        background-color: gray;
+    }
+    #right{
+        height: 500px;
+        width: 1300px;
+        background-color: rgb(69, 103, 136);
+    }
+    table,tr,th,td{
+        border: 2px solid black;
+        border-collapse: collapse;
+    }
+</style>
+<body> 
+    <div id="main">
+        <div id="left">
+            <form id= "UserForm">
+            <br><label for="Name"  style="margin-left: 5%;">Name</label><br>
+            <input type="Name" style="margin-left: 05%;" id="Names"><br>
+            <label for="Email"  style="margin-left: 05%;">Email</label><br>
+            <input type="text"  style="margin-left: 05%;" id="Emails"><br>
+            <label for="Phone"  style="margin-left: 05%;">Phone</label><br>
+            <input type="text"  style="margin-left: 05%;" id="Phones"><br>
+            <label for="Password"  style="margin-left: 05%;" >Password</label><br>
+            <input type="text "  style="margin-left: 05%;" id="Passwords"><br>
+            <label for="State"  style="margin-left: 05%;">State</label><br>
+            <input type="text"  style="margin-left: 05%;" id="States"><br>
+            <label for="City" style="margin-left: 05%;">City</label><br>
+            <input type="text"  style="margin-left: 05%;" id="Citys"><br>
+            <label for="Country"  style="margin-left: 05%;">Country</label><br>
+            <input type="text"  style="margin-left: 05%;" id="Countrys"><br>
+            <label for="Pincode"  style="margin-left: 05%;">Pincode</label><br>
+            <input type="text"  style="margin-left: 05%;" id="Pincodes"><br>
+            <label for="Education"  style="margin-left: 05%;">Education</label><br>
+            <input type="text"  style="margin-left: 05%;" id="Educations"><br><br>
+            <input type="submit" style="margin-left: 30%;"><br><br>
+            <input type="reset" style="margin-left: 32%;">
+        </form>
+        </div>
+        <div id="right">
+           
+            <table id="Table">
+                <thead>
+                    <th>S.No</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Password</th>
+                    <th>State</th>
+                    <th>City</th>
+                    <th>Country</th>
+                    <th>Pincode</th>
+                    <th>Education</th>
+                    <th>Status</th>
+                </thead>
+            </table>
+        </div>
+    </div>
+
+</body>
+<script>
+    document.getElementById("UserForm").addEventListener("submit", async function(e){
+        e.preventDefault();
+        var data={
+        Name: document.getElementById("Names").value,
+        Email: document.getElementById("Emails").value,
+        Phone: document.getElementById("Phones").value,
+        Password: document.getElementById("Passwords").value,
+        State: document.getElementById("States").value,
+        City: document.getElementById("Citys").value,
+        Country: document.getElementById("Countrys").value,
+        Pincode: document.getElementById("Pincodes").value,
+        Education: document.getElementById("Educations").value
+       
+        }
+   try {
+       var SendData= await fetch("https://6196d2b3af46280017e7e2d0.mockapi.io/UserData",{
+           method:"POST",
+           body:JSON.stringify(data),
+           headers:{
+               "Content-type" : "application/json"
+           }
+
+       })
+   } catch (error) {
+      console.log(error) 
+   }
+        
+    });
+    temp=[]
+   fetch("https://6196d2b3af46280017e7e2d0.mockapi.io/UserData")
+.then(function(rdata){
+    return rdata.json()
+})
+.then(function(rdata1){
+    temp.push(rdata1)
+    console.log(temp)
+    console.log(rdata1)
+    console.log(typeof(rdata1))
+    console.log(rdata1.length)
+    var Tbody=document.createElement("tbody")
+    Tbody.style.backgroundColor="#48be6e"
+document.body.querySelector("Table").appendChild(Tbody)
+
+    rdata1.forEach(element => {
+var ROW=document.createElement("tr")
+Tbody.appendChild(ROW)
+var abcd=element
+console.log(Object.keys(abcd).length)
+for(let i=0;i<1;i++){
+    var CELL=document.createElement("td")
+    CELL.innerText=abcd.id
+    ROW.appendChild(CELL)
+}
+for(let i=0;i<1;i++){
+    var CELL=document.createElement("td")
+    CELL.innerText=abcd.Name
+    ROW.appendChild(CELL)
+}
+for(let i=0;i<1;i++){
+    var CELL=document.createElement("td")
+    CELL.innerText=abcd.Email
+    ROW.appendChild(CELL)
+}
+for(let i=0;i<1;i++){
+    var CELL=document.createElement("td")
+    CELL.innerText=abcd.Phone
+    ROW.appendChild(CELL)
+}
+for(let i=0;i<1;i++){
+    var CELL=document.createElement("td")
+    CELL.innerText=abcd.Password
+    ROW.appendChild(CELL)
+}
+for(let i=0;i<1;i++){
+    var CELL=document.createElement("td")
+    CELL.innerText=abcd.State
+    ROW.appendChild(CELL)
+}
+for(let i=0;i<1;i++){
+    var CELL=document.createElement("td")
+    CELL.innerText=abcd.City
+    ROW.appendChild(CELL)
+}
+for(let i=0;i<1;i++){
+    var CELL=document.createElement("td")
+    CELL.innerText=abcd.Country
+    ROW.appendChild(CELL)
+}
+for(let i=0;i<1;i++){
+    var CELL=document.createElement("td")
+    CELL.innerText=abcd.Pincode
+    ROW.appendChild(CELL)
+}
+for(let i=0;i<1;i++){
+    var CELL=document.createElement("td")
+    CELL.innerText=abcd.Education
+    ROW.appendChild(CELL)
+}
+for(let i=0;i<1;i++){
+    var CELL=document.createElement("td")
+    CELL.style.backgroundColor="indianred"
+    ROW.appendChild(CELL)
+    var EDIT=document.createElement("button")
+    EDIT.style.marginLeft="8px"
+    EDIT.innerText= "Edit"
+    CELL.appendChild(EDIT)
+    var DELETE=document.createElement("button")
+    DELETE.innerText="Delete"
+    CELL.appendChild(DELETE)
+    EDIT.addEventListener("click",  async function(){
+        await fetch("https://6196d2b3af46280017e7e2d0.mockapi.io/UserData")
+        .then(function(FillForm){
+            return FillForm.json()
+        })
+        .then(function(FillForm1){
+            console.log(FillForm1[0])
+             var x=document.getElementById("Names")
+             if (x){
+                 x.innerHTML="+HIIIIII+"
+             }
+        })  
+
+       
+    
+    })
+    DELETE.addEventListener("click", async function(){
+        await fetch(`https://6196d2b3af46280017e7e2d0.mockapi.io/UserData/${abcd.id}`,{
+            method:"DELETE"
+        })
+    })
+    
+}
+
+
+       
+       
+    });
+   
+   
+    })
+
+    
+
+</script>
+</html>
